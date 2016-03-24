@@ -20,16 +20,16 @@ pygame.display.set_caption(u"イメージロード関数のテスト") #キャ�
 """
 
 def load_image(filename, colorkey = None):
-    try:                                                        # 画像ファイルの読み込み
-        image = pygame.image.load(filename)
-    except pygame.error, message:                               # 失敗した時はメッセージを出して終了
-        print "Cannot load image! Doesn't exist or clash."
-        raise SystemExit, message
+#    try:                                                        # 画像ファイルの読み込み
+    image = pygame.image.load(filename)
+#    except pygame.error, message:                               # 失敗した時はメッセージを出して終了
+#        print "Cannot load image:", filename
+#        raise SystemExit, message
     image = image.convert()
     if colorkey is not None:
         if colorkey is -1:
             colorkey = image.get_at((0,0))
-        image.set_colorkey(colorkey.RLEACCEL)
+        image.set_colorkey(colorkey, RLEACCEL)
     return image, image.get_rect()
 
 planeImg, planeRect = load_image("plane.png", colorkey = -1)
@@ -37,7 +37,7 @@ planeImg, planeRect = load_image("plane.png", colorkey = -1)
 while True:
     screen.fill((0,0,0))
     screen.blit(planeImg,(100,100))
-    screen.blit(planeImg2,(200,100))
+#    screen.blit(planeImg2,(200,100))
 
 
 
