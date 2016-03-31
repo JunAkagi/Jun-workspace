@@ -38,9 +38,6 @@ while True:
     screen.fill((0,0,0))
     screen.blit(planeImg,(100,100))
 #    screen.blit(planeImg2,(200,100))
-
-
-
     pygame.display.update()
 
     for event in pygame.event.get():
