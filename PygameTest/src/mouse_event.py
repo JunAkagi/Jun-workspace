@@ -16,10 +16,10 @@ screen = pygame.display.set_mode(screen_size)
 pygame.display.set_caption(u"マウスイベント")                   #キャプション
 
 backImg = pygame.image.load("moriyama.jpg").convert()
-pythonImg = pygame.image.load("python.jpg").convert_alpha()
+pythonImg = pygame.image.load("python.png").convert_alpha()
 
 cur_pos = (0,0)     # 蛇の位置
-python_pos = []     # コピーした蛇の位置リスト
+pythons_pos = []     # コピーした蛇の位置リスト
 
 
 while True:
@@ -31,11 +31,20 @@ while True:
             sys.exit()
 
         # マウスのクリックで蛇をコピー
-        if event.type == MOUSEBUTTONDOWN and event,button == 1:
+        if event.type == MOUSEBUTTONDOWN and event.button == 1:
             x,y = event.pos
             x -= pythonImg.get_width() / 2
             y -= pythonImg.get_height() / 2
-            python_pos.append((x,y))  #蛇の位置を追加
-
+            pythons_pos.append((x,y))  #蛇の位置を追加
+        # マウス移動で蛇を移動
+        if event.type == MOUSEMOTION:
+            x , y = event.pos
+            x -= pythonImg.get_width() / 2
+            y -= pythonImg.get_height() / 2
+            cur_pos = (x,y)
+    # 蛇を表示
+    screen.blit(pythonImg, cur_pos)
+    for i, j in pythons_pos:
+        screen.blit(pythonImg,(i,j))
 
     pygame.display.update()
