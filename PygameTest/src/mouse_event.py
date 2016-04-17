@@ -32,7 +32,10 @@ while True:
 
         # マウスのクリックで蛇をコピー
         if event.type == MOUSEBUTTONDOWN and event.button == 1:
-            x,y = event.pos
+            x,y = event.pos                 # クリックした位置
+            """
+            以下は、クリックした位置を画像の左上の位置に変換している。x -= A -> x = x - A
+            """
             x -= pythonImg.get_width() / 2
             y -= pythonImg.get_height() / 2
             pythons_pos.append((x,y))  #蛇の位置を追加
